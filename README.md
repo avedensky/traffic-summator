@@ -49,5 +49,6 @@ For example:: python3 ./simulator-client.py -c 3 -a localhost -p 9000 (Will send
 
 <p>
 <b>Autostart</b>
+<br>
 For autostarting you can add program to /etc/rc.local file
 </p>

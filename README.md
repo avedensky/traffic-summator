@@ -1,6 +1,6 @@
 <h1>Traffic summator</h1>
 
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=KMHLMS36HC5MY&lc=RU&item_name=%d0%9f%d1%80%d0%be%d0%b3%d1%80%d0%b0%d0%bc%d0%bc%d0%b0%20%2d%20%d0%a1%d1%83%d0%bc%d0%bc%d0%b0%d1%82%d0%be%d1%80%20%d1%82%d1%80%d0%b0%d1%84%d0%b8%d0%ba%d0%b0&currency_code=RUB&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=KMHLMS36HC5MY&lc=RU&item_name=Traffic%20Summator%20Program&currency_code=RUB&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 <br>
 
 <p>

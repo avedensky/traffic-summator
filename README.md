@@ -7,7 +7,7 @@
 The 'Traffic summator' program listens to the specified ip port and wait clients. After connection all traffic redirect to the specified host (ip and port are specified).
 </p>
 
-![Main Window](https://github.com/avedensky/traffic-summator/raw/master/scr/scr-1.jpg)
+![Main Window](https://github.com/avedensky/traffic-summator/raw/master/img/scr-1.jpg)
 
 <p>
 <b>

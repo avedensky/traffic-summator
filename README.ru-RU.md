@@ -7,7 +7,7 @@
 Программа 'Сумматор трафика' слушает заданный ip порт к которому клиенты, генерирующие трафик, подключаются по мере необходимости, полученный трафик программа перенаправляет в указанный хост (указывается ip и порт).
 </p>
 
-![Main Window](https://github.com/avedensky/traffic-summator/raw/master/scr/scr-1.jpg)
+![Main Window](https://github.com/avedensky/traffic-summator/raw/master/img/scr-1.jpg)
 
 <p>
 <b>

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 #coding: utf-8
 """
-Traffic Summator ver 0.2.0.
+Traffic Summator ver 0.3.1.
 
-Summator trafic from many hosts, store, and redirect to one host
+Summator trafic from many clients, and redirect to one host
 
 AVedensky 2017
 avedensky@gmail.com
@@ -16,6 +16,16 @@ from multiprocessing import Process, Queue
 
 CLIENTS_LIMIT = 30 # limit client connections
 DATA_BUFFER = 4096 # size data buffer (bytes)
+verbose_mode = False
+
+
+def _print(s):
+    """
+    TO DO: change to loging in future...
+    """
+    if verbose_mode==True:
+        print(s)
+
 
 def get_client_connection(host, port):
     """
@@ -25,12 +35,12 @@ def get_client_connection(host, port):
     while True:
         try:
             connection.connect((host, port))            
-            print('SUCCESSFULLY! Connection has been established. ip: {0}, port: {1}'.format(host, port))
+            _print('SUCCESSFULLY! Connection has been established. ip: {0}, port: {1}'.format(host, port))
             return connection
 
         except ConnectionRefusedError:            
-            print('WARNING! Can\'t connect ip: {0}, port: {1}, Wait connection...'.format(host, port))
-            print('Try repeat connect every second... ')
+            _print('WARNING! Can\'t connect ip: {0}, port: {1}, Wait connection...'.format(host, port))
+            _print('Try repeat connect every second... ')
             sleep(1)          
 
 
@@ -46,10 +56,10 @@ def woker_data_sender(queue_data, host, port):
                 if not queue_data.empty():
                     data = queue_data.get()
                     connection.send(data)
-                    print('Data redirected to: {0}:{1}; data: {2}'.format(host, port, data))
+                    _print('Data redirected to: {0}:{1}; data: {2}'.format(host, port, data))
 
         except BrokenPipeError:
-            print('WARNING! Connection is broken to: {0}:{1}'.format(host,port))            
+            _print('WARNING! Connection is broken to: {0}:{1}'.format(host,port))            
 
         except KeyboardInterrupt:
             return
@@ -57,6 +67,7 @@ def woker_data_sender(queue_data, host, port):
         finally:    
             if connection != None:                
                 connection.close()
+
 
 def worker_data_reciver(connection, queue_data):
     """
@@ -68,7 +79,7 @@ def worker_data_reciver(connection, queue_data):
             data = connection.recv (DATA_BUFFER)                        
             sys.stdout.flush()
             if len(data)==0:
-                print('INFO: No data, may be client disconnected...')
+                _print('INFO: No data, may be client disconnected...')
                 return
             else:
                 queue_data.put(data)                
@@ -93,13 +104,13 @@ def run_server(listen_ip, listen_port, redirect_ip, redirect_port):
     server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     server.bind((listen_ip, listen_port))
     server.listen(CLIENTS_LIMIT)
-    print('SUCCESSFULLY! Listen server - started!')    
+    _print('SUCCESSFULLY! Listen server - started!')    
 
     try:
         while True:
             conn, dest_addr = server.accept() 
 
-            print('SUCCESSFULLY! Client connected from {0}'.format(dest_addr))
+            _print('SUCCESSFULLY! Client connected from {0}'.format(dest_addr))
             sys.stdout.flush()
 
             process = Process(target=worker_data_reciver, 
@@ -125,15 +136,19 @@ if __name__=='__main__':
     parser.add_argument('-p', action='store', dest='redirect_port', 
         type=int, help="Port of HOST to redirect traffic")
 
+    parser.add_argument('-v', action='store_true', dest='verbose', 
+        help="Verbose mode on/off")
+
     args = parser.parse_args()    
 
     if len(sys.argv)==1:
         parser.print_help()
         sys.exit(1)
 
-    print('Listen port: {0}'.format(args.listen_port))
-    print('Redirect host: {0}:{1}'.format(args.redirect_ip, args.redirect_port))
-    print('----------------------------------------')
+    _print('Listen port: {0}'.format(args.listen_port))
+    _print('Redirect host: {0}:{1}'.format(args.redirect_ip, args.redirect_port))
+    _print('----------------------------------------')
 
     listen_ip = ''
+    verbose_mode = args.verbose    
     run_server(listen_ip, args.listen_port, args.redirect_ip, args.redirect_port)

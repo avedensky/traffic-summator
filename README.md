@@ -42,7 +42,7 @@ You can use client emulator program 'simulator-client.py' from directory
 
 For example:: python3 ./simulator-client.py -c 1 -a localhost -p 9000 (Will send to port 9000 name of the figures once a second)<br>
 
-For example:: python3 ./simulator-client.py -c 2 -a localhost -p 9000 (Will send to port 9000 the name of the figures once a second)<br>
+For example:: python3 ./simulator-client.py -c 2 -a localhost -p 9000 (Will send to port 9000 the name of the number once a second)<br>
 
 For example:: python3 ./simulator-client.py -c 3 -a localhost -p 9000 (Will send to port 9000 colors name once a second)
 </p>

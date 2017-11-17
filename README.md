@@ -22,6 +22,7 @@ python3 ./summator.py -l PORT -a IPADDR -p PORT
 -I <b>PORT</b> - listen port<br>
 -a <b>IPADDR</b> - redirect ip<br>
 -p <b>PORT</b> - redirect port
+-v - verbose mode
 </p>
 
 <p>
